@@ -25,6 +25,7 @@ def inch_approve(web3, privatekey, address_wallet, amount_to_swap, from_token_ad
         json_data = get_api_call_data(_1inchurl)
 
         tx = {
+            "chainId": chain_id,
             "nonce": nonce,
             "to": web3.toChecksumAddress(json_data["to"]),
             "data": json_data["data"],
@@ -35,9 +36,9 @@ def inch_approve(web3, privatekey, address_wallet, amount_to_swap, from_token_ad
         signed_tx = web3.eth.account.signTransaction(tx, privatekey)
         tx_hash = web3.eth.sendRawTransaction(signed_tx.rawTransaction)
 
-        cprint(f'\n>>> approve {symbol} : {scan}/{web3.toHex(tx_hash)}', 'green')
+        cprint(f'\n>>> 1inch approve {amount_to_swap} {symbol} : {scan}/{web3.toHex(tx_hash)}', 'green')
     except Exception as error:
-        cprint(f'\n>>> approve {address_wallet} | {symbol} | {error}', 'red')
+        cprint(f'\n>>> 1inch approve {amount_to_swap} {symbol} {address_wallet} | {symbol} | {error}', 'red')
 
 table = []
 def inch_sell(rpc_chain, privatekey, amount, from_token_address, to_token_address, ERC20_ABI, scan, chain_id):
@@ -71,6 +72,7 @@ def inch_sell(rpc_chain, privatekey, amount, from_token_address, to_token_addres
         json_data = get_api_call_data(_1inchurl)
 
         tx = json_data['tx']
+        tx['chainId'] = chain_id
         tx['nonce'] = nonce
         tx['to'] = Web3.toChecksumAddress(tx['to'])
         tx['gasPrice'] = int(tx['gasPrice'])
@@ -79,13 +81,12 @@ def inch_sell(rpc_chain, privatekey, amount, from_token_address, to_token_addres
         tx_hash = web3.eth.sendRawTransaction(signed_tx.rawTransaction)
 
         table.append([address_wallet, '\u001b[32mswap\u001b[0m'])
-        cprint(f'\n>>> swap {from_symbol} => {to_symbol} | {scan}/{web3.toHex(tx_hash)}', 'green')
+        cprint(f'\n>>> 1inch swap {amount} {from_symbol} => {to_symbol} | {scan}/{web3.toHex(tx_hash)}', 'green')
     except Exception as error:
-        cprint(f'\n>>> swap {from_symbol} => {to_symbol} | {address_wallet} | {error}', 'red')
+        cprint(f'\n>>> 1inch swap  {amount} {from_symbol} => {to_symbol} | {address_wallet} | {error}', 'red')
         table.append([address_wallet, '\u001b[31mnot_swap\u001b[0m'])
 
 def swaps(privatekey, CHAIN, FROM_TOKEN_ADDRESS, TO_TOKEN_ADDRESS, AMOUNT_TO_SWAP, MIN_BALANCE, MIN_AMOUNT):
-
     data = check_rpc(CHAIN)
     rpc_chain = data['rpc']
     chain_id = data['chain_id']
@@ -107,7 +108,6 @@ def swaps(privatekey, CHAIN, FROM_TOKEN_ADDRESS, TO_TOKEN_ADDRESS, AMOUNT_TO_SWA
             AMOUNT_TO_SWAP = check_token_balance(privatekey, rpc_chain, FROM_TOKEN_ADDRESS, MIN_BALANCE)
 
     if AMOUNT_TO_SWAP > MIN_AMOUNT:
-
         inch_sell(rpc_chain, privatekey, AMOUNT_TO_SWAP, FROM_TOKEN_ADDRESS, TO_TOKEN_ADDRESS, ERC20_ABI, scan, chain_id)
 
 
