@@ -10,7 +10,6 @@ from config import *
 from binance import *
 from debank import checker_main
 
-
 if __name__ == "__main__":
 
     cprint(RUN_TEXT, RUN_COLOR)
@@ -40,16 +39,19 @@ if __name__ == "__main__":
             usdc_optimism = '0x7f5c764cbc14f9669b88837ca1490cca17c31607'
             usdc_arbitrum = '0xff970a61a04b1ca14834a43f5de4533ebddb5cc8'
 
-            def swap_1inch():
+            usdt_arbitrum = '0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9'
 
+            usdt_eth = '0xdac17f958d2ee523a2206206994597c13d831ec7'
+
+            def swap_1inch():
                 # ETH | OPTIMISM | BNB | MATIC | FTM | ARBITRUM | AVAXC 
 
-                CHAIN = 'OPTIMISM' 
-                FROM_TOKEN_ADDRESS = '0x7f5c764cbc14f9669b88837ca1490cca17c31607' # пусто, если eth
-                TO_TOKEN_ADDRESS = '' # пусто, если eth
-                # AMOUNT_TO_SWAP = 80
-                AMOUNT_TO_SWAP = 'all_balance'
-                # AMOUNT_TO_SWAP = round(random.uniform(25, 30), 0) # от 1 до 3, 5 цифр после точки
+                CHAIN = 'ETH' 
+                FROM_TOKEN_ADDRESS = '' # пусто, если eth
+                TO_TOKEN_ADDRESS = usdt_eth # пусто, если eth
+                # AMOUNT_TO_SWAP = 0.001
+                # AMOUNT_TO_SWAP = 'all_balance'
+                AMOUNT_TO_SWAP = round(random.uniform(0.001, 0.0014), 6) # от 1 до 3, 5 цифр после точки
                 # MIN_BALANCE = round(random.uniform(0.005, 0.01), 5) # останется FROM_TOKEN на балансе после свапа
                 MIN_BALANCE = 0 # останется FROM_TOKEN на балансе после свапа
                 MIN_AMOUNT = 0 # если AMOUNT_TO_SWAP меньше этого числа, тогда не свапаем
@@ -59,11 +61,11 @@ if __name__ == "__main__":
 
                 # ETH | OPTIMISM | BNB | MATIC | FTM | ARBITRUM | NOVA | AVAXC
                 
-                FROM_CHAIN = 'ARBITRUM'
-                TO_CHAIN = 'NOVA'
+                FROM_CHAIN = 'NOVA'
+                TO_CHAIN = 'ARBITRUM'
                 # AMOUNT_TO_BRIDGE = 'all_balance'
-                AMOUNT_TO_BRIDGE = round(random.uniform(0.03, 0.04), 6)
-                # AMOUNT_TO_BRIDGE = 10
+                # AMOUNT_TO_BRIDGE = round(random.uniform(0.03, 0.04), 6)
+                AMOUNT_TO_BRIDGE = 0.016
                 MIN_BALANCE = 0 # останется токенов на балансе после бриджа
                 orbiter_bridge(privatekey, FROM_CHAIN, TO_CHAIN, AMOUNT_TO_BRIDGE, MIN_BALANCE)
 
@@ -109,8 +111,8 @@ if __name__ == "__main__":
             # swap_1inch()
             # sleeping(20, 30)
 
-            # bridge_orbiter()
-            # sleeping(20, 30)
+            bridge_orbiter()
+            sleeping(20, 30)
 
             # bridge_eth_arbitrum()
             # sleeping(60, 140)
@@ -121,8 +123,8 @@ if __name__ == "__main__":
             # binance()
 
             
-    check_balance()
-    # main()
+    # check_balance()
+    main()
 
 
 
