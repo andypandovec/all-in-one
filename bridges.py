@@ -57,6 +57,7 @@ def orbiter_bridge(privatekey, from_chain, to_chain, AMOUNT_TO_BRIDGE, MIN_BALAN
     symbol_chain = data['token']
 
     if AMOUNT_TO_BRIDGE == 'all_balance':
+        print(check_balance(privatekey, rpc_chain, symbol_chain, MIN_BALANCE))
         AMOUNT_TO_BRIDGE = float(check_balance(privatekey, rpc_chain, symbol_chain, MIN_BALANCE))
 
     if AMOUNT_TO_BRIDGE < 0.10101:
