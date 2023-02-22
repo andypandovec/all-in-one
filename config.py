@@ -10,16 +10,21 @@ from tabulate import tabulate
 from decimal import Decimal
 
 
-with open("erc20.json", "r") as file:
+import os
+
+print(os.path.dirname(os.path.realpath(__file__)))
+scriptPath = os.path.dirname(os.path.realpath(__file__))+"\\"
+
+with open(scriptPath+"erc20.json", "r") as file:
     ERC20_ABI = json.load(file)
 
-with open("private_keys.txt", "r") as f:
+with open(scriptPath+"private_keys.txt", "r") as f:
     KEYS_LIST = [row.strip() for row in f]
 
-with open("recepients.txt", "r") as f:
+with open(scriptPath+"recepients.txt", "r") as f:
     RECEPIENTS = [row.strip() for row in f]
 
-with open("proxies.txt", "r") as f:
+with open(scriptPath+"proxies.txt", "r") as f:
     RPOXIES = [row.strip() for row in f]
 
 BINANCE_API_KEY = 'YOUR_API_KEY'
@@ -145,7 +150,7 @@ def check_token_balance(privatekey, rpc_chain, address_contract, min_balance):
 
         humanReadable = decimalToInt(token_balance, token_decimal) 
 
-        # cprint(f'\nbalance : {round(humanReadable, 5)} {symbol}', 'white')
+        cprint(f'\nbalance : {round(humanReadable, 5)} {symbol}', 'white')
 
         return round(Decimal(humanReadable) - Decimal(min_balance), 7)
 
