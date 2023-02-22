@@ -115,7 +115,7 @@ def check_balance(privatekey, rpc_chain, symbol_chain, min_balance):
         account = web3.eth.account.privateKeyToAccount(privatekey)
         balance = web3.eth.get_balance(web3.toChecksumAddress(account.address))
 
-        humanReadable = web3.from_wei(balance,'ether')
+        humanReadable = web3.fromWei(balance,'ether')
 
         try:
             # check price of token
@@ -133,7 +133,7 @@ def check_balance(privatekey, rpc_chain, symbol_chain, min_balance):
 
 
     except Exception as error:
-        # cprint(f'error : {error}', 'yellow')
+        cprint(f'error : {error}', 'yellow')
         None
 
 def check_token_balance(privatekey, rpc_chain, address_contract, min_balance):
