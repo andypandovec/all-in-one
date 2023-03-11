@@ -1,3 +1,8 @@
 .DS_Store
 
 private_keys.txt
+*__pycache__*
+__pycache__
+__pycache__/
+*.pyc
+__pycache__/config.cpython-310.pyc
