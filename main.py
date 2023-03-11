@@ -61,11 +61,11 @@ if __name__ == "__main__":
 
                 # ETH | OPTIMISM | BNB | MATIC | FTM | ARBITRUM | NOVA | AVAXC
                 
-                FROM_CHAIN = 'OPTIMISM'
-                TO_CHAIN = 'ARBITRUM'
-                AMOUNT_TO_BRIDGE = 'all_balance'
-                # AMOUNT_TO_BRIDGE = round(random.uniform(0.02, 0.03), 6)
-                # AMOUNT_TO_BRIDGE = 0.016
+                FROM_CHAIN = 'ARBITRUM'
+                TO_CHAIN = 'NOVA'
+                # AMOUNT_TO_BRIDGE = 'all_balance'
+                AMOUNT_TO_BRIDGE = round(random.uniform(0.016, 0.019), 6)
+                # AMOUNT_TO_BRIDGE = 0.0162
                 MIN_BALANCE = 0 # останется токенов на балансе после бриджа
                 orbiter_bridge(privatekey, FROM_CHAIN, TO_CHAIN, AMOUNT_TO_BRIDGE, MIN_BALANCE)
 
@@ -112,7 +112,7 @@ if __name__ == "__main__":
             # sleeping(20, 30)
 
             bridge_orbiter()
-            sleeping(10, 20)
+            sleeping(6, 10)
 
             # bridge_eth_arbitrum()
             # sleeping(60, 140)
