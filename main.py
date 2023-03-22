@@ -100,7 +100,7 @@ if __name__ == "__main__":
                 amount_to_withdraw = round(random.uniform(0.21, 0.23), amm)
                 # amount_to_withdraw = 0.001
                 symbol = 'ETH'
-                network = 'ARBITRUM'
+                network = 'ETH'
                 binance_withdraw(
                     privatekey, 
                     amount_to_withdraw, # amount_to_withdraw
@@ -111,8 +111,8 @@ if __name__ == "__main__":
             # swap_1inch()
             # sleeping(20, 30)
 
-            bridge_orbiter()
-            sleeping(6, 10)
+            # bridge_orbiter()
+            # sleeping(6, 10)
 
             # bridge_eth_arbitrum()
             # sleeping(60, 140)
@@ -120,11 +120,11 @@ if __name__ == "__main__":
             # transfer_tokens()
             # sleeping(20, 30)
 
-            # binance()
+            binance()
 
             
-    # check_balance()
-    main()
+    check_balance()
+    # main()
 
 
 

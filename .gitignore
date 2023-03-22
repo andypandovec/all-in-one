@@ -1,8 +1,12 @@
 .DS_Store
-
-private_keys.txt
+private_keys*
 *__pycache__*
 __pycache__
 __pycache__/
 *.pyc
 __pycache__/config.cpython-310.pyc
+debank.txt
+__pycache__/binance.cpython-310.pyc
+__pycache__/debank.cpython-310.pyc
+__pycache__/swap.cpython-310.pyc
+__pycache__/binance.cpython-310.pyc

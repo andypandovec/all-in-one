@@ -13,7 +13,7 @@ from decimal import Decimal
 import os
 
 print(os.path.dirname(os.path.realpath(__file__)))
-scriptPath = os.path.dirname(os.path.realpath(__file__))+"\\"
+scriptPath = os.path.dirname(os.path.realpath(__file__))+"/"
 
 with open(scriptPath+"erc20.json", "r") as file:
     ERC20_ABI = json.load(file)
